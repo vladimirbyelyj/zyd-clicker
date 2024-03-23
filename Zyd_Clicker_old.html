@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Gay Central</title>
+    <style>
+
+        body {
+            background-image: url('pokuj.jpg');
+            background-repeat: inherit;
+            background-size: cover;
+        }
+        
+        .zydxd {
+            margin-left: 750px;
+            margin-top: 300px;
+        }
+
+        .cuntr {
+            margin-left: 750px;
+            margin-top: 20px;
+        }
+
+        .txtt {
+            text-align: center;
+            background-color: aqua;
+            border: 3px;
+            border-color: black;
+        }
+
+        .dejw {
+            margin-left: 750px;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<h1 class="txtt">ŻYD CLICKER (wersja alpha 0.0.1)</h1>
+<img class="zydxd" src="żyd.jpeg" id="zydimg">
+<input type="text" class="cuntr" id="zcCounter" value="0 Żydcoinów" readonly="true">
+<br><h3 class="txtt">SKLEP</h3><br>
+<select id="sklepik" class="dejw">
+    <option>Nazista (500 Żydcoinów)</option>
+    <option>SSman (1488 Żydcoinów)</option>
+    <option>Biczownik (10000 Żydcoinów)</option>
+    <option>Komora gazowa (40000 Żydcoinów)</option>
+</select>
+<input value="Kup" type="button" onclick="zakup()">
+<script>
+
+    var zcReg=1;
+    var zcCounter = document.getElementById("zcCounter");
+    var zydcoins = 0;
+    var zydimg = document.getElementById("zydimg");
+    function zcUpdate(){
+        zcCounter.value = zydcoins + ' Żydcoinów';
+    }
+    zydimg.addEventListener('mousedown', function(){
+        zydcoins= zydcoins + zcReg;
+        zcUpdate();
+    });
+    function zakup(){
+        var przedmiot = document.getElementById("sklepik").value;
+        switch(przedmiot) { 
+            // Nazista - +0.5 za kliknieciem
+            // SSman - +3 za kliknieciem
+            // Biczownik - +10 za kliknieciem
+            // Nazista - +50 za kliknieciem
+            case "Nazista (500 Żydcoinów)":
+            if (zydcoins>=500) {
+                zcReg=zcReg+0.5;
+                zydcoins = zydcoins - 500;
+                zcUpdate();
+            }
+            break;
+            case "SSman (3000 Żydcoinów)":
+            if (zydcoins>=1488) {
+                zcReg = zcReg + 3;
+                zydcoins = zydcoins - 1488;
+                zcUpdate();
+            }
+            break;
+            case "Biczownik (10000 Żydcoinów)":
+            if (zydcoins>=10000) {
+                zcReg=zcReg+10;
+                zydcoins = zydcoins - 10000;
+                zcUpdate();
+            }
+            break;
+            case "Komora gazowa (40000 Żydcoinów)":
+            if (zydcoins>=40000) {
+                zcReg=zcReg+50;
+                zydcoins = zydcoins - 30000;
+                zcUpdate();
+            }
+            break;
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

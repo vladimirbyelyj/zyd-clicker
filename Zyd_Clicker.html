@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Żyd Clicker</title>
+    <style>
+
+        body { 
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            background-color: #222222;
+            overflow: hidden;
+        }
+
+        #header {
+            width: 100vw;
+            height: 10vh;
+            font-size: 2vh;
+            line-height: 0.5;
+            color: white;
+            font-family: Verdana;
+            text-align: center;
+        }
+
+        #main {
+            background-image: url("bg.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat; 
+            height: 60vh;
+        }
+
+        #zyd {
+            display: block;
+            height: 20vh;
+            margin: auto;
+            margin-top: 25vh;
+        }
+
+        #footer {
+            height: 30vh;
+            color: white;
+            font-family: Verdana;
+            text-align: center;
+            font-size: 2vh;
+        }
+
+        .inputs {
+            height: 3vh;
+            font-size: 2vh;
+        }
+
+        .lista {
+            width: 20%;
+            float: left;
+            color: white;
+            font-family: Verdana;
+            font-size: 2vh;
+            text-shadow: 0.1vw 0.1vh 0 black;
+        }
+
+    </style>
+</head>
+<body>
+   
+    <div id="header">
+            <h1 style="text-align: center;">ŻYD CLICKER</h1> <br>
+            [Wersja 0.2]
+    </div>
+    
+    <div id="main">
+        <hr>
+        <div class="lista">
+            Ulepszenia:
+            <ul>
+                <li id="nzCounter">Naziści: 0</li>
+                <li id="snCounter">Strażnicy: 0</li>
+                <li id="zrCounter">Zespoły R.: 0</li>
+                <li id="kgCounter">Komory: 0</li>
+            </ul>
+        </div>
+        <img src="żyd.jpg" id="zyd">
+        <input type="text" value="0 Żydcoinów" readonly="true" style="margin-left: 43vw;" id="zcCounter" class="inputs">
+    </div>
+
+    <div id="footer">
+        <h2 style="text-align: center;">SKLEP</h2> <br>
+        <div style="width: 30%; float: left;">
+            Cennik:<br>
+                - Ulepszenia Kliknięć - <br>
+                    Nazista - 500 żc + 0.5 żc za kliknięciem <br>
+                    Strażnik Austwitz - 1488 żc + 3 żc za kliknięciem <br>
+                    Zespół Rozstrzelników - 5000 żc + 10 żc za kliknięciem <br>
+                    Komora Gazowa - 15000 żc + 25 żc za kliknięciem <br>
+        </div>
+        <div style="width: 70%; float: left;">
+            <select id="sklep" class="inputs">
+                <option>Nazista</option>
+                <option>Strażnik</option>
+                <option>Zespół Rozstrzelników</option>
+                <option>Komora Gazowa</option>
+            </select>   
+            <input type="button" value="Kup" class="inputs" onclick="zakup()">
+        </div>
+    </div>
+
+<script>
+
+    var zyd = document.getElementById("zyd");
+    var zcCounter = document.getElementById("zcCounter");
+    var zydcoiny = 0;
+    var zcReg = 500;
+    var sklep = document.getElementById("sklep");
+    var nzCounter = document.getElementById("nzCounter");
+    var snCounter = document.getElementById("snCounter");
+    var zrCounter = document.getElementById("zrCounter");
+    var kgCounter = document.getElementById("kgCounter");
+    var nzLiczb = 0;
+    var snLiczb = 0;
+    var zrLiczb = 0;
+    var kgLiczb = 0;
+
+    function update() {
+        zcCounter.value = zydcoiny + " Żydcoinów";
+        nzCounter.innerHTML = "Naziści: " + nzLiczb;
+        snCounter.innerHTML = "Strażnicy: " + snLiczb;
+        zrCounter.innerHTML = "Zespoły R.: " + zrLiczb;
+        kgCounter.innerHTML = "Komory: " + kgLiczb;  
+    }
+
+    zyd.addEventListener('mousedown', function(){
+        zydcoiny = zydcoiny + zcReg;
+        update();
+    });
+
+    function zakup(){
+        switch(sklep.value) {
+            case "Nazista": if(zydcoiny>=500){zydcoiny = zydcoiny - 500; zcReg = zcReg + 0.5; nzLiczb = nzLiczb + 1; update(); break;}
+            case "Strażnik": if(zydcoiny>=1488){zydcoiny = zydcoiny - 1488; zcReg = zcReg + 3; snLiczb = snLiczb + 1; update(); break;}
+            case "Zespół Rozstrzelników": if(zydcoiny>=5000){zydcoiny = zydcoiny - 5000; zcReg = zcReg + 10; zrLiczb = zrLiczb + 1; update(); break;}
+            case "Komora Gazowa": if(zydcoiny>=15000){zydcoiny = zydcoiny - 15000; zcReg = zcReg + 25; kgLiczb = kgLiczb + 1; update(); break;}
+        }
+    }
+
+</script>
+
+</body>
+</html>
